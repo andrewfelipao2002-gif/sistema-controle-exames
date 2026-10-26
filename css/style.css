@@ -1,0 +1,385 @@
+/* =====================================================
+   VARIÁVEIS: cores e medidas guardadas em um só lugar.
+   Para mudar o tema, basta alterar aqui.
+   ===================================================== */
+:root {
+  --cor-principal: #0b7285;
+  --cor-escura: #095c6b;
+  --cor-clara: #e3fafc;
+  --cor-destaque: #fab005;
+  --cor-destaque-escura: #e09900;
+  --cor-texto: #1e293b;
+  --cor-texto-suave: #64748b;
+  --cor-fundo-cinza: #f1f5f9;
+  --cor-borda: #e2e8f0;
+  --branco: #ffffff;
+  --altura-cabecalho: 64px;
+}
+
+/* =====================================================
+   RESET E BASE
+   ===================================================== */
+/* Zera as margens do navegador; box-sizing faz o padding não aumentar as caixas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Rolagem suave ao clicar nos links do menu; o scroll-padding evita que
+   o título da seção fique escondido atrás do cabeçalho fixo */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--altura-cabecalho);
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* Imagens e links padrão */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Container: limita a largura do conteúdo e centraliza na tela */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+.botao {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Botão amarelo: ação principal (acessar o sistema) */
+.botao--destaque {
+  background: var(--cor-destaque);
+  color: var(--cor-texto);
+}
+
+.botao--destaque:hover {
+  background: var(--cor-destaque-escura);
+}
+
+/* Botão só com borda: ação secundária (usado sobre fundo escuro) */
+.botao--contorno {
+  border-color: var(--branco);
+  color: var(--branco);
+}
+
+.botao--contorno:hover {
+  background: var(--branco);
+  color: var(--cor-principal);
+}
+
+/* Contorno visível ao navegar pelo teclado (acessibilidade) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   CABEÇALHO: fixo no topo, com logo e menu
+   ===================================================== */
+.cabecalho {
+  position: sticky; /* acompanha a rolagem da página */
+  top: 0;
+  z-index: 10;
+  background: var(--branco);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho__interno {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: var(--altura-cabecalho);
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+}
+
+/* Menu no computador: links lado a lado */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.menu a:not(.botao):hover {
+  color: var(--cor-principal);
+}
+
+/* Botão do menu do celular: escondido no computador */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--cor-principal);
+  cursor: pointer;
+}
+
+/* =====================================================
+   HERO: apresentação principal, com fundo em degradê
+   ===================================================== */
+.hero {
+  background: linear-gradient(135deg, var(--cor-principal), var(--cor-escura));
+  color: var(--branco);
+  padding: 80px 0;
+}
+
+/* Duas colunas: texto à esquerda e cartão à direita */
+.hero__interno {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero__texto h1 {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero__texto p {
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  opacity: 0.95;
+}
+
+/* flex-wrap: se não couber lado a lado, o segundo botão desce */
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Cartão branco com as etapas do exame */
+.hero__cartao {
+  background: var(--branco);
+  color: var(--cor-texto);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero__cartao-titulo {
+  font-weight: 700;
+  color: var(--cor-principal);
+  margin-bottom: 16px;
+}
+
+.etapas {
+  list-style: none;
+}
+
+.etapas li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.etapas li:last-child {
+  border-bottom: none;
+}
+
+/* =====================================================
+   SEÇÕES (Sobre, Funcionalidades, Perfis)
+   ===================================================== */
+.secao {
+  padding: 70px 0;
+}
+
+/* Variação com fundo cinza, para alternar as seções */
+.secao--cinza {
+  background: var(--cor-fundo-cinza);
+}
+
+.secao h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--cor-principal);
+  margin-bottom: 12px;
+}
+
+.secao__intro {
+  text-align: center;
+  color: var(--cor-texto-suave);
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+/* =====================================================
+   GRADES E CARTÕES
+   ===================================================== */
+.grade {
+  display: grid;
+  gap: 20px;
+}
+
+/* Quantidade de colunas no computador */
+.grade--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grade--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cartao {
+  background: var(--branco);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito ao passar o mouse: o cartão sobe um pouco */
+.cartao:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cartao h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.cartao p {
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+/* =====================================================
+   CHAMADA FINAL
+   ===================================================== */
+.chamada {
+  background: var(--cor-clara);
+  text-align: center;
+  padding: 60px 0;
+}
+
+.chamada h2 {
+  color: var(--cor-escura);
+  margin-bottom: 8px;
+}
+
+.chamada p {
+  margin-bottom: 24px;
+  color: var(--cor-texto-suave);
+}
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
+.rodape {
+  background: var(--cor-texto);
+  color: var(--branco);
+  text-align: center;
+  padding: 28px 0;
+  font-size: 0.9rem;
+}
+
+.rodape p + p {
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+   @media aplica as regras só quando a tela é menor que o tamanho indicado
+   ===================================================== */
+
+/* TABLET (até 992px): grades passam para 2 colunas */
+@media (max-width: 992px) {
+  .grade--3,
+  .grade--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* CELULAR GRANDE (até 768px): menu vira botão e o hero fica em 1 coluna */
+@media (max-width: 768px) {
+  /* Mostra o botão ☰ */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* O menu vira uma lista que abre embaixo do cabeçalho.
+     Começa escondido e o JS adiciona a classe "aberto" para mostrar. */
+  .menu {
+    display: none;
+    position: absolute;
+    top: var(--altura-cabecalho);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--branco);
+    padding: 12px 20px 20px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu.aberto {
+    display: flex;
+  }
+
+  .menu a {
+    padding: 12px 0;
+  }
+
+  .menu .botao {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .hero {
+    padding: 50px 0;
+  }
+
+  .hero__interno {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__texto h1 {
+    font-size: 2rem;
+  }
+
+  .secao {
+    padding: 50px 0;
+  }
+}
+
+/* CELULAR PEQUENO (até 600px): tudo em 1 coluna */
+@media (max-width: 600px) {
+  .grade--3,
+  .grade--4 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__acoes .botao {
+    width: 100%;
+    text-align: center;
+  }
+}
