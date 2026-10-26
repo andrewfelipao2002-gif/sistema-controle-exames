@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<!-- Diz ao navegador que este é um documento HTML5 -->
 <html lang="pt-BR">
 <head>
-  <!-- Permite acentos e caracteres especiais -->
   <meta charset="UTF-8">
   <!-- Faz a página se ajustar à tela do celular (essencial para a responsividade) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Descrição que aparece nos resultados de busca -->
   <meta name="description" content="Sistema de Controle de Exames Médicos: agende exames laboratoriais e de imagem e acompanhe o status.">
-  <!-- Título que aparece na aba do navegador -->
   <title>ExamesMed | Controle de Exames Médicos</title>
-  <!-- Liga o arquivo de estilos (CSS) à página -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,11 +13,9 @@
   <!-- ===== CABEÇALHO: logo, menu de navegação e botão de acesso ===== -->
   <header class="cabecalho">
     <div class="container cabecalho__interno">
-
-      <!-- Logo: clicar leva ao topo da página -->
       <a href="#inicio" class="logo">🩺 ExamesMed</a>
 
-      <!-- Botão que abre/fecha o menu no celular (o JS controla; o CSS esconde no computador) -->
+      <!-- Botão ☰ do celular (o JS abre/fecha o menu; o CSS o esconde no computador) -->
       <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
 
       <!-- Menu: cada link rola até a seção com o mesmo id -->
@@ -33,13 +26,12 @@
         <a href="#perfis">Perfis</a>
         <a href="login.html" class="botao botao--destaque">Acessar o sistema</a>
       </nav>
-
     </div>
   </header>
 
   <main>
 
-    <!-- ===== INÍCIO: apresentação do sistema (seção principal da página) ===== -->
+    <!-- ===== INÍCIO: apresentação do sistema ===== -->
     <section class="hero" id="inicio">
       <div class="container hero__interno">
         <div class="hero__texto">
@@ -51,7 +43,7 @@
           </div>
         </div>
 
-        <!-- Cartão decorativo que resume o fluxo do exame -->
+        <!-- Cartão decorativo com o fluxo do exame (aria-hidden: leitores de tela ignoram) -->
         <div class="hero__cartao" aria-hidden="true">
           <p class="hero__cartao-titulo">Acompanhe o status do exame</p>
           <ul class="etapas">
@@ -64,13 +56,13 @@
       </div>
     </section>
 
-    <!-- ===== SOBRE: o que é o sistema e quais números/benefícios ele traz ===== -->
+    <!-- ===== SOBRE: o que é o sistema e seus benefícios ===== -->
     <section class="secao" id="sobre">
       <div class="container">
         <h2>Sobre o sistema</h2>
         <p class="secao__intro">O ExamesMed controla o caminho completo do exame médico, do pedido do médico até a entrega do resultado, evitando conflitos de horário e perda de informações.</p>
 
-        <div class="grade grade--3">
+        <div class="grade">
           <article class="cartao">
             <h3>🎯 Organização</h3>
             <p>Agendamentos por paciente, médico, local e tipo de exame, tudo registrado e fácil de consultar.</p>
@@ -93,10 +85,69 @@
         <h2>Funcionalidades</h2>
         <p class="secao__intro">Tudo o que a clínica ou o laboratório precisa para controlar seus exames.</p>
 
-        <div class="grade grade--4">
+        <div class="grade">
           <article class="cartao">
             <h3>👤 Pacientes</h3>
             <p>Cadastro completo com CPF, nascimento e telefone.</p>
           </article>
           <article class="cartao">
-            <h3>📋
+            <h3>📋 Requisições</h3>
+            <p>Registro do pedido de exame emitido pelo médico solicitante.</p>
+          </article>
+          <article class="cartao">
+            <h3>📅 Agendamentos</h3>
+            <p>Marque, remarque ou cancele exames com controle de horários.</p>
+          </article>
+          <article class="cartao">
+            <h3>✅ Check-in</h3>
+            <p>Confirmação de presença na chegada do paciente.</p>
+          </article>
+          <article class="cartao">
+            <h3>🧪 Coleta e laudos</h3>
+            <p>Registro da coleta ou execução, geração do laudo e liberação do resultado.</p>
+          </article>
+          <article class="cartao">
+            <h3>🔍 Busca e filtros</h3>
+            <p>Encontre agendamentos e exames por nome, data e status.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERFIS: quem usa o sistema (atores do modelo) ===== -->
+    <section class="secao" id="perfis">
+      <div class="container">
+        <h2>Perfis de uso</h2>
+        <p class="secao__intro">Cada pessoa vê as telas e ações que fazem parte do seu trabalho.</p>
+
+        <div class="grade">
+          <article class="cartao">
+            <h3>Paciente e médico solicitante</h3>
+            <p>Consultam agendamentos e resultados; o médico também emite a requisição do exame.</p>
+          </article>
+          <article class="cartao">
+            <h3>Recepção e técnicos</h3>
+            <p>Agendam, confirmam a presença e registram a coleta ou a execução do exame.</p>
+          </article>
+          <article class="cartao">
+            <h3>Biomédico, radiologista e administrador</h3>
+            <p>Emitem e validam os laudos e parametrizam locais, tipos de exame e usuários.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <div class="container">
+      <p>© 2026 ExamesMed - Sistema de Controle de Exames Médicos</p>
+      <p>Projeto acadêmico desenvolvido por Andrew Felipe</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript no final, para o HTML já existir quando ele rodar -->
+  <script src="js/main.js"></script>
+</body>
+</html>

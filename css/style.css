@@ -1,6 +1,5 @@
 /* =====================================================
-   VARIÁVEIS: cores e medidas guardadas em um só lugar.
-   Para mudar o tema, basta alterar aqui.
+   VARIÁVEIS: cores e medidas guardadas em um só lugar
    ===================================================== */
 :root {
   --cor-principal: #0b7285;
@@ -17,41 +16,23 @@
 }
 
 /* =====================================================
-   RESET E BASE
+   BASE
    ===================================================== */
-/* Zera as margens do navegador; box-sizing faz o padding não aumentar as caixas */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Zera as margens do navegador; box-sizing evita que o padding aumente as caixas */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Rolagem suave ao clicar nos links do menu; o scroll-padding evita que
-   o título da seção fique escondido atrás do cabeçalho fixo */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--altura-cabecalho);
-}
+/* Rolagem suave nos links do menu; o scroll-padding deixa o título
+   da seção visível, sem ficar atrás do cabeçalho fixo */
+html { scroll-behavior: smooth; scroll-padding-top: var(--altura-cabecalho); }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--cor-texto);
-  line-height: 1.6;
-}
-
-/* Imagens e links padrão */
-a {
-  color: inherit;
-  text-decoration: none;
-}
+body { font-family: "Segoe UI", Arial, sans-serif; color: var(--cor-texto); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
 
 /* Container: limita a largura do conteúdo e centraliza na tela */
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Contorno visível ao navegar pelo teclado (acessibilidade) */
+a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-destaque); outline-offset: 2px; }
 
 /* =====================================================
    BOTÕES
@@ -59,46 +40,26 @@ a {
 .botao {
   display: inline-block;
   padding: 12px 24px;
+  border: 2px solid transparent;
   border-radius: 8px;
   font-weight: 600;
-  border: 2px solid transparent;
-  cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
 
-/* Botão amarelo: ação principal (acessar o sistema) */
-.botao--destaque {
-  background: var(--cor-destaque);
-  color: var(--cor-texto);
-}
+/* Amarelo: ação principal */
+.botao--destaque { background: var(--cor-destaque); color: var(--cor-texto); }
+.botao--destaque:hover { background: var(--cor-destaque-escura); }
 
-.botao--destaque:hover {
-  background: var(--cor-destaque-escura);
-}
-
-/* Botão só com borda: ação secundária (usado sobre fundo escuro) */
-.botao--contorno {
-  border-color: var(--branco);
-  color: var(--branco);
-}
-
-.botao--contorno:hover {
-  background: var(--branco);
-  color: var(--cor-principal);
-}
-
-/* Contorno visível ao navegar pelo teclado (acessibilidade) */
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--cor-destaque);
-  outline-offset: 2px;
-}
+/* Só com borda: ação secundária (sobre fundo escuro) */
+.botao--contorno { border-color: var(--branco); color: var(--branco); }
+.botao--contorno:hover { background: var(--branco); color: var(--cor-principal); }
 
 /* =====================================================
-   CABEÇALHO: fixo no topo, com logo e menu
+   CABEÇALHO E MENU
    ===================================================== */
+/* sticky: o cabeçalho acompanha a rolagem da página */
 .cabecalho {
-  position: sticky; /* acompanha a rolagem da página */
+  position: sticky;
   top: 0;
   z-index: 10;
   background: var(--branco);
@@ -112,68 +73,40 @@ button:focus-visible {
   min-height: var(--altura-cabecalho);
 }
 
-.logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--cor-principal);
-}
+.logo { font-size: 1.3rem; font-weight: 700; color: var(--cor-principal); }
 
-/* Menu no computador: links lado a lado */
-.menu {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
+.menu { display: flex; align-items: center; gap: 24px; }
+.menu .botao { padding: 8px 20px; }
 
-.menu a:not(.botao):hover {
-  color: var(--cor-principal);
-}
+/* Link em destaque ao passar o mouse ou quando a seção está na tela (classe "ativo" posta pelo JS) */
+.menu a:not(.botao):hover,
+.menu a.ativo:not(.botao) { color: var(--cor-principal); }
+.menu a.ativo:not(.botao) { font-weight: 700; }
 
-/* Botão do menu do celular: escondido no computador */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: var(--cor-principal);
-  cursor: pointer;
-}
+/* Botão ☰ do celular: escondido no computador */
+.menu-toggle { display: none; background: none; border: 0; font-size: 1.8rem; color: var(--cor-principal); cursor: pointer; }
 
 /* =====================================================
-   HERO: apresentação principal, com fundo em degradê
+   HERO: apresentação principal
    ===================================================== */
+/* clamp(mínimo, ideal, máximo): o valor acompanha a largura da tela, dentro dos limites */
 .hero {
   background: linear-gradient(135deg, var(--cor-principal), var(--cor-escura));
   color: var(--branco);
-  padding: 80px 0;
+  padding: clamp(50px, 8vw, 80px) 0;
 }
 
-/* Duas colunas: texto à esquerda e cartão à direita */
+/* Colunas automáticas: lado a lado quando cabe, empilhadas quando não cabe */
 .hero__interno {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 40px;
   align-items: center;
 }
 
-.hero__texto h1 {
-  font-size: 2.6rem;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.hero__texto p {
-  font-size: 1.1rem;
-  margin-bottom: 28px;
-  opacity: 0.95;
-}
-
-/* flex-wrap: se não couber lado a lado, o segundo botão desce */
-.hero__acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+.hero__texto h1 { font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1.2; margin-bottom: 16px; }
+.hero__texto p { font-size: 1.1rem; margin-bottom: 28px; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* Cartão branco com as etapas do exame */
 .hero__cartao {
@@ -184,149 +117,65 @@ button:focus-visible {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.hero__cartao-titulo {
-  font-weight: 700;
-  color: var(--cor-principal);
-  margin-bottom: 16px;
-}
-
-.etapas {
-  list-style: none;
-}
-
-.etapas li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--cor-borda);
-}
-
-.etapas li:last-child {
-  border-bottom: none;
-}
+.hero__cartao-titulo { font-weight: 700; color: var(--cor-principal); margin-bottom: 8px; }
+.etapas { list-style: none; }
+.etapas li { padding: 12px 0; border-bottom: 1px solid var(--cor-borda); }
+.etapas li:last-child { border: 0; }
 
 /* =====================================================
-   SEÇÕES (Sobre, Funcionalidades, Perfis)
+   SEÇÕES
    ===================================================== */
-.secao {
-  padding: 70px 0;
-}
-
-/* Variação com fundo cinza, para alternar as seções */
-.secao--cinza {
-  background: var(--cor-fundo-cinza);
-}
-
-.secao h2 {
-  font-size: 2rem;
-  text-align: center;
-  color: var(--cor-principal);
-  margin-bottom: 12px;
-}
-
-.secao__intro {
-  text-align: center;
-  color: var(--cor-texto-suave);
-  max-width: 650px;
-  margin: 0 auto 40px;
-}
+.secao { padding: clamp(50px, 7vw, 70px) 0; }
+.secao--cinza { background: var(--cor-fundo-cinza); } /* alterna o fundo das seções */
+.secao h2 { font-size: 2rem; text-align: center; color: var(--cor-principal); margin-bottom: 12px; }
+.secao__intro { text-align: center; color: var(--cor-texto-suave); max-width: 650px; margin: 0 auto 40px; }
 
 /* =====================================================
-   GRADES E CARTÕES
+   GRADE E CARTÕES
    ===================================================== */
+/* auto-fit: o navegador decide quantas colunas cabem (cada uma com no mínimo --min).
+   Isso substitui os @media de tablet e celular. */
 .grade {
   display: grid;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min, 280px), 1fr));
 }
 
-/* Quantidade de colunas no computador */
-.grade--3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grade--4 {
-  grid-template-columns: repeat(4, 1fr);
-}
+/* Cartões menores: cabem 4 por linha no computador */
+.grade--4 { --min: 240px; }
 
 .cartao {
   background: var(--branco);
   padding: 24px;
-  border-radius: 12px;
   border: 1px solid var(--cor-borda);
+  border-radius: 12px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Efeito ao passar o mouse: o cartão sobe um pouco */
-.cartao:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.cartao h3 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-
-.cartao p {
-  color: var(--cor-texto-suave);
-  font-size: 0.95rem;
-}
+/* Ao passar o mouse, o cartão sobe um pouco */
+.cartao:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
+.cartao h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.cartao p { color: var(--cor-texto-suave); font-size: 0.95rem; }
 
 /* =====================================================
-   CHAMADA FINAL
+   CHAMADA FINAL E RODAPÉ
    ===================================================== */
-.chamada {
-  background: var(--cor-clara);
-  text-align: center;
-  padding: 60px 0;
-}
+.chamada { background: var(--cor-clara); text-align: center; padding: 60px 0; }
+.chamada h2 { color: var(--cor-escura); margin-bottom: 8px; }
+.chamada p { color: var(--cor-texto-suave); margin-bottom: 24px; }
 
-.chamada h2 {
-  color: var(--cor-escura);
-  margin-bottom: 8px;
-}
-
-.chamada p {
-  margin-bottom: 24px;
-  color: var(--cor-texto-suave);
-}
+.rodape { background: var(--cor-texto); color: var(--branco); text-align: center; padding: 28px 0; font-size: 0.9rem; }
+.rodape p + p { margin-top: 4px; opacity: 0.7; }
 
 /* =====================================================
-   RODAPÉ
+   RESPONSIVIDADE: só o menu precisa de @media
+   (o resto se adapta sozinho com auto-fit e clamp)
    ===================================================== */
-.rodape {
-  background: var(--cor-texto);
-  color: var(--branco);
-  text-align: center;
-  padding: 28px 0;
-  font-size: 0.9rem;
-}
-
-.rodape p + p {
-  margin-top: 4px;
-  opacity: 0.7;
-}
-
-/* =====================================================
-   RESPONSIVIDADE
-   @media aplica as regras só quando a tela é menor que o tamanho indicado
-   ===================================================== */
-
-/* TABLET (até 992px): grades passam para 2 colunas */
-@media (max-width: 992px) {
-  .grade--3,
-  .grade--4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* CELULAR GRANDE (até 768px): menu vira botão e o hero fica em 1 coluna */
 @media (max-width: 768px) {
-  /* Mostra o botão ☰ */
-  .menu-toggle {
-    display: block;
-  }
+  .menu-toggle { display: block; }
 
   /* O menu vira uma lista que abre embaixo do cabeçalho.
-     Começa escondido e o JS adiciona a classe "aberto" para mostrar. */
+     Começa escondido; o JS adiciona a classe "aberto" para mostrar. */
   .menu {
     display: none;
     position: absolute;
@@ -341,45 +190,10 @@ button:focus-visible {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .menu.aberto {
-    display: flex;
-  }
+  .menu.aberto { display: flex; }
+  .menu a { padding: 12px 0; }
+  .menu .botao { text-align: center; margin-top: 8px; }
 
-  .menu a {
-    padding: 12px 0;
-  }
-
-  .menu .botao {
-    text-align: center;
-    margin-top: 8px;
-  }
-
-  .hero {
-    padding: 50px 0;
-  }
-
-  .hero__interno {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__texto h1 {
-    font-size: 2rem;
-  }
-
-  .secao {
-    padding: 50px 0;
-  }
-}
-
-/* CELULAR PEQUENO (até 600px): tudo em 1 coluna */
-@media (max-width: 600px) {
-  .grade--3,
-  .grade--4 {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__acoes .botao {
-    width: 100%;
-    text-align: center;
-  }
+  /* Botões do hero ocupam a largura toda no celular */
+  .hero__acoes .botao { width: 100%; text-align: center; }
 }
