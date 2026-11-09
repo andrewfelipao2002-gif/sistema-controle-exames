@@ -1,3 +1,7 @@
+﻿// Usuário e senha válidos
+const USUARIO_VALIDO = "andrew";
+const SENHA_VALIDA = "1234";
+
 // Pega o formulário e os elementos da tela de login pelo id
 const formLogin = document.getElementById("form-login");
 const campoUsuario = document.getElementById("usuario");
@@ -28,9 +32,10 @@ formLogin.addEventListener("submit", function (evento) {
         return;
     }
 
-    // Validação 3: senha muito curta
-    if (senha.length < 4) {
-        mensagemErro.textContent = "A senha deve ter pelo menos 4 caracteres.";
+    // Validação 3: confere se usuário e senha são os válidos
+    if (usuario !== USUARIO_VALIDO || senha !== SENHA_VALIDA) {
+        mensagemErro.textContent = "Usuário ou senha incorretos.";
+        campoSenha.value = ""; // limpa a senha digitada
         campoSenha.focus();
         return;
     }
