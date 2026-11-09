@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Aceita acentos -->
+    <meta charset="UTF-8">
+
+    <!-- Adapta a página para celulares e computadores -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - ExamesMed</title>
+
+    <!-- Mesmo CSS da tela inicial (está na pasta css, um nível acima) -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- Topo azul igual ao da tela inicial -->
+    <header>
+        <h1>ExamesMed</h1>
+    </header>
+
+    <main>
+
+        <!-- Caixa branca que envolve o formulário -->
+        <section class="login-box">
+            <h2>Acesse sua conta</h2>
+
+            <!-- Formulário de login (será validado com JavaScript) -->
+            <form id="form-login">
+
+                <!-- Campo de usuário -->
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário">
+
+                <!-- Campo de senha (os caracteres ficam ocultos) -->
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha">
+
+                <!-- Mensagem de erro (começa vazia) -->
+                <p id="mensagem-erro"></p>
+
+                <!-- Botão que envia o formulário -->
+                <button type="submit">Entrar</button>
+            </form>
+
+            <!-- Link para voltar à tela inicial (index.html está um nível acima) -->
+            <a href="../index.html" class="voltar">← Voltar para o início</a>
+        </section>
+
+    </main>
+
+    <!-- Rodapé igual ao da tela inicial -->
+    <footer>
+        <p>
+            &copy; 2026 ExamesMed - Sistema de Controle de Exames Médicos
+        </p>
+    </footer>
+
+</body>
+</html>
