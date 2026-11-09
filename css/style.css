@@ -1,199 +1,73 @@
-/* =====================================================
-   VARIÁVEIS: cores e medidas guardadas em um só lugar
-   ===================================================== */
-:root {
-  --cor-principal: #0b7285;
-  --cor-escura: #095c6b;
-  --cor-clara: #e3fafc;
-  --cor-destaque: #fab005;
-  --cor-destaque-escura: #e09900;
-  --cor-texto: #1e293b;
-  --cor-texto-suave: #64748b;
-  --cor-fundo-cinza: #f1f5f9;
-  --cor-borda: #e2e8f0;
-  --branco: #ffffff;
-  --altura-cabecalho: 64px;
-}
+/* Configuração geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 
-/* =====================================================
-   BASE
-   ===================================================== */
-/* Zera as margens do navegador; box-sizing evita que o padding aumente as caixas */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Rolagem suave nos links do menu; o scroll-padding deixa o título
-   da seção visível, sem ficar atrás do cabeçalho fixo */
-html { scroll-behavior: smooth; scroll-padding-top: var(--altura-cabecalho); }
-
-body { font-family: "Segoe UI", Arial, sans-serif; color: var(--cor-texto); line-height: 1.6; }
-a { color: inherit; text-decoration: none; }
-
-/* Container: limita a largura do conteúdo e centraliza na tela */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-/* Contorno visível ao navegar pelo teclado (acessibilidade) */
-a:focus-visible, button:focus-visible { outline: 3px solid var(--cor-destaque); outline-offset: 2px; }
-
-/* =====================================================
-   BOTÕES
-   ===================================================== */
-.botao {
-  display: inline-block;
-  padding: 12px 24px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
-}
-
-/* Amarelo: ação principal */
-.botao--destaque { background: var(--cor-destaque); color: var(--cor-texto); }
-.botao--destaque:hover { background: var(--cor-destaque-escura); }
-
-/* Só com borda: ação secundária (sobre fundo escuro) */
-.botao--contorno { border-color: var(--branco); color: var(--branco); }
-.botao--contorno:hover { background: var(--branco); color: var(--cor-principal); }
-
-/* =====================================================
-   CABEÇALHO E MENU
-   ===================================================== */
-/* sticky: o cabeçalho acompanha a rolagem da página */
-.cabecalho {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--branco);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-}
-
-.cabecalho__interno {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: var(--altura-cabecalho);
-}
-
-.logo { font-size: 1.3rem; font-weight: 700; color: var(--cor-principal); }
-
-.menu { display: flex; align-items: center; gap: 24px; }
-.menu .botao { padding: 8px 20px; }
-
-/* Link em destaque ao passar o mouse ou quando a seção está na tela (classe "ativo" posta pelo JS) */
-.menu a:not(.botao):hover,
-.menu a.ativo:not(.botao) { color: var(--cor-principal); }
-.menu a.ativo:not(.botao) { font-weight: 700; }
-
-/* Botão ☰ do celular: escondido no computador */
-.menu-toggle { display: none; background: none; border: 0; font-size: 1.8rem; color: var(--cor-principal); cursor: pointer; }
-
-/* =====================================================
-   HERO: apresentação principal
-   ===================================================== */
-/* clamp(mínimo, ideal, máximo): o valor acompanha a largura da tela, dentro dos limites */
-.hero {
-  background: linear-gradient(135deg, var(--cor-principal), var(--cor-escura));
-  color: var(--branco);
-  padding: clamp(50px, 8vw, 80px) 0;
-}
-
-/* Colunas automáticas: lado a lado quando cabe, empilhadas quando não cabe */
-.hero__interno {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px;
-  align-items: center;
-}
-
-.hero__texto h1 { font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1.2; margin-bottom: 16px; }
-.hero__texto p { font-size: 1.1rem; margin-bottom: 28px; }
-.hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* Cartão branco com as etapas do exame */
-.hero__cartao {
-  background: var(--branco);
-  color: var(--cor-texto);
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.hero__cartao-titulo { font-weight: 700; color: var(--cor-principal); margin-bottom: 8px; }
-.etapas { list-style: none; }
-.etapas li { padding: 12px 0; border-bottom: 1px solid var(--cor-borda); }
-.etapas li:last-child { border: 0; }
-
-/* =====================================================
-   SEÇÕES
-   ===================================================== */
-.secao { padding: clamp(50px, 7vw, 70px) 0; }
-.secao--cinza { background: var(--cor-fundo-cinza); } /* alterna o fundo das seções */
-.secao h2 { font-size: 2rem; text-align: center; color: var(--cor-principal); margin-bottom: 12px; }
-.secao__intro { text-align: center; color: var(--cor-texto-suave); max-width: 650px; margin: 0 auto 40px; }
-
-/* =====================================================
-   GRADE E CARTÕES
-   ===================================================== */
-/* auto-fit: o navegador decide quantas colunas cabem (cada uma com no mínimo --min).
-   Isso substitui os @media de tablet e celular. */
-.grade {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(var(--min, 280px), 1fr));
-}
-
-/* Cartões menores: cabem 4 por linha no computador */
-.grade--4 { --min: 240px; }
-
-.cartao {
-  background: var(--branco);
-  padding: 24px;
-  border: 1px solid var(--cor-borda);
-  border-radius: 12px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Ao passar o mouse, o cartão sobe um pouco */
-.cartao:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); }
-.cartao h3 { font-size: 1.1rem; margin-bottom: 8px; }
-.cartao p { color: var(--cor-texto-suave); font-size: 0.95rem; }
-
-/* =====================================================
-   CHAMADA FINAL E RODAPÉ
-   ===================================================== */
-.chamada { background: var(--cor-clara); text-align: center; padding: 60px 0; }
-.chamada h2 { color: var(--cor-escura); margin-bottom: 8px; }
-.chamada p { color: var(--cor-texto-suave); margin-bottom: 24px; }
-
-.rodape { background: var(--cor-texto); color: var(--branco); text-align: center; padding: 28px 0; font-size: 0.9rem; }
-.rodape p + p { margin-top: 4px; opacity: 0.7; }
-
-/* =====================================================
-   RESPONSIVIDADE: só o menu precisa de @media
-   (o resto se adapta sozinho com auto-fit e clamp)
-   ===================================================== */
-@media (max-width: 768px) {
-  .menu-toggle { display: block; }
-
-  /* O menu vira uma lista que abre embaixo do cabeçalho.
-     Começa escondido; o JS adiciona a classe "aberto" para mostrar. */
-  .menu {
-    display: none;
-    position: absolute;
-    top: var(--altura-cabecalho);
-    left: 0;
-    right: 0;
+    /* Organiza a página em coluna */
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: var(--branco);
-    padding: 12px 20px 20px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  }
+}
 
-  .menu.aberto { display: flex; }
-  .menu a { padding: 12px 0; }
-  .menu .botao { text-align: center; margin-top: 8px; }
+/* Topo azul */
+header {
+    background-color: #0077b6;
+    padding: 15px;
+}
 
-  /* Botões do hero ocupam a largura toda no celular */
-  .hero__acoes .botao { width: 100%; text-align: center; }
+/* Nome ExamesMed no topo */
+h1 {
+    color: white;
+    font-size: 40px;
+    margin: 10px;
+}
+
+/* Área do conteúdo principal */
+main {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+/* Texto de apresentação */
+main p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Botão de login */
+button {
+    background-color: #0077b6;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+/* Efeito ao passar o mouse no botão */
+button:hover {
+    background-color: #023e8a;
+}
+
+/* Rodapé azul */
+footer {
+    background-color: #0077b6;
+    color: white;
+    padding: 15px;
+}
+
+/* Texto do rodapé */
+footer p {
+    color: white;
+    font-size: 14px;
+    margin:
+ 5px;
 }
