@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -12,28 +12,64 @@
 
     <!-- CSS geral (cabeçalho, rodapé, botão e fundo) -->
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- CSS do menu e da tela principal -->
+    <link rel="stylesheet" href="../css/principal.css">
 </head>
 
 <body>
 
-    <!-- Topo azul igual ao das outras telas -->
+    <!-- Topo azul com o nome do sistema e o menu de navegação -->
     <header>
         <h1>ExamesMed</h1>
+
+        <!-- Menu: cada link leva a uma funcionalidade do sistema -->
+        <nav class="menu">
+            <a href="principal.html" class="ativo">Início</a>
+            <a href="pacientes.html">Pacientes</a>
+            <a href="requisicoes.html">Requisições</a>
+            <a href="agendamentos.html">Agendamentos</a>
+            <a href="acompanhamento.html">Acompanhamento</a>
+            <a href="resultados.html">Resultados</a>
+            <a href="../index.html">Sair</a>
+        </nav>
     </header>
 
     <main>
 
-        <!-- Mensagem de boas-vindas após o login -->
         <h2>Bem-vindo ao sistema!</h2>
         <p>
-            Login realizado com sucesso. Em breve você poderá
-            pesquisar e consultar os exames médicos por aqui.
+            Use o menu acima ou os atalhos abaixo para acessar
+            as funcionalidades do sistema.
         </p>
 
-        <!-- Botão para sair e voltar à tela inicial -->
-        <button onclick="window.location.href='../index.html'">
-            Sair
-        </button>
+        <!-- Atalhos para as funcionalidades -->
+        <section class="cards">
+            <a href="pacientes.html" class="card">
+                <h3>Pacientes</h3>
+                <p>Cadastre e consulte pacientes.</p>
+            </a>
+
+            <a href="requisicoes.html" class="card">
+                <h3>Requisições</h3>
+                <p>Cadastre requisições de exames.</p>
+            </a>
+
+            <a href="agendamentos.html" class="card">
+                <h3>Agendamentos</h3>
+                <p>Agende, remarque ou cancele exames.</p>
+            </a>
+
+            <a href="acompanhamento.html" class="card">
+                <h3>Acompanhamento</h3>
+                <p>Acompanhe o status dos exames.</p>
+            </a>
+
+            <a href="resultados.html" class="card">
+                <h3>Resultados</h3>
+                <p>Consulte laudos e resultados liberados.</p>
+            </a>
+        </section>
 
     </main>
 
